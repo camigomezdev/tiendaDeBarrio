@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-5">
+                <img src="{{ product.image.url }}" class="img-fluid">
+            </div>
+            <div class="col">
+                <div class="jumbotron">
+                    <h1 class="display-4">{{ product.name }}</h1>
+                    {% if product.discounted_price %}
+                        <h5 class="card-title"><s>{{ product.price }} USD</s></h5>
+                    {% endif %}
+                    <h5 class="card-title">{{ product.get_price }} USD</h5>
+
+                    <hr class="my-4">
+                    
+                    <p>{{ product.description }}</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        
+    </div>
+{% endblock %}
