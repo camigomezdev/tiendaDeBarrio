@@ -1,5 +1,4 @@
-{% extends 'base/base.html' %}
-
+{% extends "base/base.html" %}
 {% block content %}
     <div class="container">
         <div class="row" style="margin-top: 10px;">
@@ -10,17 +9,41 @@
                 <div class="jumbotron">
                     <h1 class="display-4">{{ product.name }}</h1>
                     {% if product.discounted_price %}
-                        <h5 class="card-title"><s>{{ product.price }} USD</s></h5>
+                        <h5 class="card-title">
+                            <s>{{ product.price }} USD</s>
+                        </h5>
                     {% endif %}
                     <h5 class="card-title">{{ product.get_price }} USD</h5>
-
                     <hr class="my-4">
-                    
+                    <i class="fa-regular fa-thumbs-up"></i> {{ product.likes.count }}
+                    <hr class="my-4">
+                    <form method="post" action="{% url 'add_like' id=product.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value={{ request.path }}>
+                        <button type="summit" class="btn btn-primary">
+                            <i class="fa-regular fa-thumbs-up"></i> Like
+                        </button>
+                    </form>
                     <p>{{ product.description }}</p>
                 </div>
             </div>
         </div>
         <hr>
-        
+        {% for comment in comments %}
+            <div class="comment">
+                <div class="date">{{ comment.created_date }}</div>
+                <strong>{{ comment.user }}</strong>
+                <p>{{ comment.text }}</p>
+            </div>
+        {% endfor %}
+        <div class="container">
+            <h2>Leave your comments</h2>
+            {{ product }}
+            <form action={% url 'add_new_comment' id=product.id %} method="post" class="post-form">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="save btn btn-dark">Save</button>
+            </form>
+        </div>
     </div>
-{% endblock %}
+{% endblock content %}
