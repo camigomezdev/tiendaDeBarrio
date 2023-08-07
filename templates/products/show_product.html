@@ -3,7 +3,10 @@
     <div class="container">
         <div class="row" style="margin-top: 10px;">
             <div class="col-5">
-                <img src="{{ product.image.url }}" class="img-fluid">
+                <img src="{{ product.image.url }}"
+                     class="img-fluid"
+                     height=""
+                     alt="{{ product.image.alt }}">
             </div>
             <div class="col">
                 <div class="jumbotron">
@@ -15,14 +18,11 @@
                     {% endif %}
                     <h5 class="card-title">{{ product.get_price }} USD</h5>
                     <hr class="my-4">
-                    <i class="fa-regular fa-thumbs-up"></i> {{ product.likes.count }}
-                    <hr class="my-4">
                     <form method="post" action="{% url 'add_like' id=product.id %}">
                         {% csrf_token %}
+                        {{ product.likes.count }}
                         <input type="hidden" name="next" value={{ request.path }}>
-                        <button type="summit" class="btn btn-primary">
-                            <i class="fa-regular fa-thumbs-up"></i> Like
-                        </button>
+                        <button type="summit" class="btn btn-primary">Like</button>
                     </form>
                     <p>{{ product.description }}</p>
                 </div>
@@ -32,16 +32,22 @@
         {% for comment in comments %}
             <div class="comment">
                 <div class="date">{{ comment.created_date }}</div>
-                <strong>{{ comment.user }}</strong>
+                <strong>{{ comment.author }}</strong>
                 <p>{{ comment.text }}</p>
             </div>
         {% endfor %}
         <div class="container">
             <h2>Leave your comments</h2>
             {{ product }}
-            <form action={% url 'add_new_comment' id=product.id %} method="post" class="post-form">
+            
+            <form action="{% url 'add_new_comment' id=product.id %}"
+                  method="post"
+                  class="post-form">
                 {% csrf_token %}
-                {{ form }}
+                <div class="input-group">
+                    <span class="input-group-text">Comentarios</span>
+                    {{ form.text }}
+                </div>
                 <button type="submit" class="save btn btn-dark">Save</button>
             </form>
         </div>

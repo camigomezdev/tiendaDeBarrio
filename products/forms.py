@@ -12,9 +12,9 @@ class CommentForm(forms.ModelForm):
 
         widgets = {
             'text': Textarea(attrs={
-                'class': "form-control", 
-                'placeholder': 'Comment',
-                'style': 'max-width: 300px;',
+                'class': "form-control",
+                'aria-label': "Comentarios",
+                'placeholder': 'Deja tu comentario aquí',
                 'id': 'formComment'
                 })
         }

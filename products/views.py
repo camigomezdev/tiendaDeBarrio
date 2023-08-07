@@ -23,6 +23,7 @@ def get_list_of_products(request):
                   {'products': products})
 
 
+@login_required
 def add_new_comment(request, id):
     if request.method == 'POST':
 
@@ -30,7 +31,7 @@ def add_new_comment(request, id):
 
         if form.is_valid():
             new_comment = form.save(commit=False)
-            new_comment.user = request.user
+            new_comment.author = request.user
             new_comment.product = Product.objects.get(id=id)
 
             new_comment.save()

@@ -1,26 +1,29 @@
 {% extends "base/base.html" %}
-
 {% block content %}
-<div class="container">
-    {% for product in products %}
-    {% if forloop.first %}<div class="row">{% endif %}
-        <div class="col-4">
-            <div class="card">
-                <img src="{{ product.image.url }}" class="card-img-top float-start">
-                <div class="card-body">
-                    <h5 class="card-title">{{ product }}</h5>
-                    <h5 class="card-title">{{ product.country.name }}</h5>
-                    {% if product.discounted_price %}
-                        <h5 class="card-title"><s>{{ product.price }} USD</s></h5>
-                    {% endif %}
-                    <h5 class="card-title">{{ product.get_price }} USD</h5>
-                    <p class="card-text">{{ product.description|slice:"150" }}</p>
-                    <a class="btn btn-dark" href="{% url "product" id=product.pk %}">Leer mas</a>
+    <div class="container">
+        {% for product in products %}
+            {% if forloop.first %}<div class="row">{% endif %}
+                <div class="col-3">
+                    <div class="card">
+                        <img src="{{ product.image.url }}" class="card-img-top float-start">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product }}</h5>
+                            {% if product.discounted_price %}
+                                <p class="card-title">
+                                    <s>{{ product.price }} USD</s>
+                                </p>
+                            {% endif %}
+                            <p class="card-title">{{ product.get_price }} USD</p>
+                            <p class="card-text">{{ product.description|slice:"150" }}</p>
+                            <a class="btn btn-dark" href="{% url "product" id=product.pk %}">Leer mas</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
-    {% if forloop.last %}</div>{% endif %}
-    {% endfor %}
-</div>
+                {% if forloop.counter|divisibleby:4 %}
+                </div>
+                <div class="row">
+                {% endif %}
+                {% if forloop.last %}</div>{% endif %}
+        {% endfor %}
+    </div>
 {% endblock content %}
