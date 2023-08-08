@@ -13,14 +13,14 @@ env\Scripts\activate
 
 pip install -r requirements.txt
 
-python manage.py migrate
-python manage.py runserver
+make migrate
+make run
 ```
 
 Para crear un super usuario y acceder al admin:
 
 ```
-python manage.py createsuperuser
+make createsuperuser
 ```
 
 docs: https://docs.djangoproject.com/en/4.1/ref/settings/#databases
