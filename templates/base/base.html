@@ -16,9 +16,29 @@
         <link rel="stylesheet" href="{% static 'style.css' %}">
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'index' %}">Tienda de Barrio</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link disable" href="#" tabindex="-1" aria-disabled="true">{{ user.username }}</a>
+                    </li>
+                    {% if user.username %}
+                        <li class="nav-item">
+                            <form action={% url "logout" %} method="post">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-light me-2" tabindex="-2" type="submit">Logout</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="btn btn-outline-light me-2"
+                               href="{% url 'login' %}"
+                               tabindex="-1"
+                               aria-disabled="true">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
             </div>
         </nav>
         {% block content %}
