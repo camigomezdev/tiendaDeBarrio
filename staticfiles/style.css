@@ -61,7 +61,22 @@ body {
     font-weight: bold;
 }
 
+/* Product Detail */
+.jumbotron {
+    padding: 40px 40px 40px 0;
+}
+
+.product-detail-row {
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+}
+
 .comment {
-    margin: 20px 0px 20px 20px;
+    margin: 20px 0px;
     border-bottom: #19192E solid 1px;
+}
+
+.comment-column {
+    padding-right: 30px;
 }
