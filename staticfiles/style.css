@@ -80,3 +80,35 @@ body {
 .comment-column {
     padding-right: 30px;
 }
+
+/* Login */
+.login-container, .signup-container {
+    padding: 40px;
+    display: grid;
+    align-items: center;
+    max-width: 400px;
+    margin: auto;
+}
+
+.signup-container {
+    max-width: 600px;
+}
+
+.signup-container label {
+    display: block;
+    margin-top: 10px;
+}
+
+.login-container input, .signup-container input {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.helptext {
+    font-size: 13px;
+    color: #9e9da1;
+}
+
+.submit-btn {
+    text-align: center;
+}
