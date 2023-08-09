@@ -12,12 +12,12 @@
                 <div class="jumbotron">
                     <h1 class="display-4">{{ product.name }}</h1>
                     <div class="price-container">
-                        {% if product.discounted_price %}
+                        {% if product.discounted %}
                             <h5 class="card-title">
                                 <s>{{ product.price }} USD</s>
                             </h5>
                         {% endif %}
-                        <h5 class="card-title">{{ product.get_price }} USD</h5>
+                        <h5 class="card-title">{{ product.get }} USD</h5>
                     </div>
                     <hr class="my-4">
                     <p>{{ product.description }}</p>

@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import Textarea
 
-from .models import Comment, Product
+from .models import Comment
 
 class CommentForm(forms.ModelForm):
 
@@ -18,8 +18,3 @@ class CommentForm(forms.ModelForm):
                 'id': 'formComment'
                 })
         }
-
-class LikesForm(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = ('likes',)

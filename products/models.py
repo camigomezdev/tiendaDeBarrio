@@ -12,12 +12,10 @@ class Product(models.Model):
         'products.Category', on_delete=models.CASCADE, related_name='products')
     brand = models.ForeignKey(
         'products.Brand', on_delete=models.CASCADE, related_name='products')
-    discounted_price = models.DecimalField(
+    discount = models.DecimalField(
         max_digits=10, decimal_places=2, blank=True, null=True)
     image = models.ImageField(upload_to='media/fotos', max_length=100)
     description = models.TextField()
-
-    likes = models.ManyToManyField(User, blank=True, related_name="likes")
 
     created_date = models.DateTimeField(
         default=timezone.now)
@@ -26,10 +24,10 @@ class Product(models.Model):
     
     @property
     def get_price(self):
-        if self.discounted_price:
-            return self.discounted_price
-        if self.category.discounted_price:
-            total = self.price - self.price * self.category.discounted_price
+        if self.discount:
+            return self.discount
+        if self.category.discount:
+            total = self.price - self.price * self.category.discount
             return total
         return self.price
 
@@ -44,7 +42,7 @@ class Product(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    discounted_price = models.DecimalField(
+    discount = models.DecimalField(
         max_digits=10, decimal_places=2, blank=True, null=True)
 
     created_date = models.DateTimeField(
@@ -62,6 +60,8 @@ class Category(models.Model):
 class Brand(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+    discount = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True)
 
     created_date = models.DateTimeField(
         default=timezone.now)
