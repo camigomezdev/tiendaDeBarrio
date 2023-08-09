@@ -8,14 +8,16 @@
                         <img src="{{ product.image.url }}" class="card-img-top float-start">
                         <div class="card-body">
                             <h5 class="card-title">{{ product }}</h5>
-                            {% if product.discounted_price %}
-                                <p class="card-title">
-                                    <s>{{ product.price }} USD</s>
-                                </p>
-                            {% endif %}
-                            <p class="card-title">{{ product.get_price }} USD</p>
+                            <div class="price-container">
+                                {% if product.discounted_price %}
+                                    <p class="card-title">
+                                        <s>{{ product.price }} USD</s>
+                                    </p>
+                                {% endif %}
+                                <p class="card-title product-price">{{ product.get_price }} USD</p>
+                            </div>
                             <p class="card-text">{{ product.description|slice:"150" }}</p>
-                            <a class="btn btn-dark" href="{% url "product" id=product.pk %}">Leer mas</a>
+                            <a class="btn btn-tomato" href="{% url "product" id=product.pk %}">Leer más</a>
                         </div>
                     </div>
                 </div>

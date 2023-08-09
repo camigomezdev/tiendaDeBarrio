@@ -1,11 +1,64 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: Verdana;
+}
+
+body {
+    background-color: #e8e8e8;
+}
+
+.container {
+    font-family: "Montserrat",Georgia,'Times New Roman',Times,serif;
+    padding: 20px 0;
 }
 
 .card {
     margin: 10px 0;
+    background-color: white;
+    border-radius: 20px;
+    border: none;
+    overflow: hidden;
+    padding-top: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.1rem;
+}
+
+.card-body {
+    padding: 32px;
+}
+
+.price-container {
+    display: flex;
+    gap: 12px;
+}
+
+.card-text {
+    color: #9e9da1;
+    font-size: 12px;
+}
+
+.btn {
+    width: 100%;
+}
+
+.btn-tomato {
+    background-color: tomato;
+    color: white;
+}
+
+.btn-tomato:hover {
+    background-color: #b24532;
+    color: white;
+}
+
+.product-price {
+    font-weight: bold;
 }
 
 .comment {
