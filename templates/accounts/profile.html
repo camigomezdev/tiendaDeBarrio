@@ -1,0 +1,10 @@
+{% extends "base/base.html" %}
+{% block content %}
+    <div class="container">
+        <h1>This is the profile page for {{ user.get_full_name }}</h1>
+        <p>
+            {{ user.profile.bio }}
+        </p>
+
+    </div>
+{% endblock content %}
