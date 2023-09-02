@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect
 from products.models import Product, Comment
 
@@ -24,14 +24,16 @@ def get_list_of_products(request):
 
 
 @login_required
+@permission_required("products.add_comment", raise_exception=True)
 def add_new_comment(request, id):
     if request.method == 'POST':
 
         form = CommentForm(request.POST)
 
         if form.is_valid():
+            user = request.user
             new_comment = form.save(commit=False)
-            new_comment.author = request.user
+            new_comment.author = user
             new_comment.product = Product.objects.get(id=id)
 
             new_comment.save()

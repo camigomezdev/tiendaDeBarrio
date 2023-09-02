@@ -24,6 +24,8 @@
                 </div>
             </div>
         </div>
+
+        {% if user.perms.products.add_comment %}
         <div class="row">
             <div class="col-5 comment-column">
                 <form action="{% url 'add_new_comment' id=product.id %}"
@@ -36,6 +38,7 @@
                 <button type="submit" class="save btn btn-dark">Enviar</button>
             </form>
         </div>
+        {% endif %}
         <div class="col-7">
                 <h2 class="comment-title text-left">Comentarios</h2>
                 {% for comment in comments %}
